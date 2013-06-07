@@ -522,5 +522,9 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands {
 	return j.bitcount(key, start, end);
     }
 
+    public Object eval(String script) {
+        Jedis j = getShard(java.math.BigInteger.valueOf(System.currentTimeMillis()).toByteArray());
+        return j.eval(script, 0);
+    }
 
 }

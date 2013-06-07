@@ -563,4 +563,9 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo>
         Jedis j = getShard(key);
         return j.bitcount(key, start, end);
     }
+
+    public Object eval(byte[] script, List<byte[]> keys, List<byte[]> args) {
+        Jedis j = getShard(java.math.BigInteger.valueOf(System.currentTimeMillis()).toByteArray());
+        return j.eval(script, keys, args);
+    }
 }
